@@ -2,7 +2,9 @@ git pull
 
 git add *
 
-git commit -m "Commit from the .bat file."
+set /P summary=Enter commit summary:
+
+git commit -m "%summary%"
 
 git push
 

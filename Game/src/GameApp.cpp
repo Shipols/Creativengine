@@ -1,6 +1,6 @@
 namespace Creativengine {
 
-	__declspec(dllimport) void Run();
+	__declspec(dllimport) int Run(void);
 
 }
 
