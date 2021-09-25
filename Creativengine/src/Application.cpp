@@ -27,6 +27,11 @@ namespace Creativengine {
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			glBegin(GL_TRIANGLES);
+			glVertex2f(-0.5f, -0.5f);
+			glVertex2f( 0.0f,  0.5f);
+			glVertex2f( 0.5f, -0.5f);
+			glEnd();
 
 			glClearColor(0.0f, 0.3f, 0.4f, 1.0f);
 
@@ -35,6 +40,12 @@ namespace Creativengine {
 
 			/* Poll for and process events */
 			glfwPollEvents();
+
+			glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int width, int height) {
+
+				glViewport(0, 0, width, height);
+
+			});
 		}
 
 		glfwTerminate();
