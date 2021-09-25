@@ -1,4 +1,7 @@
+//#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
+#include "Logger/LoggerMacros.h"
 
 namespace Creativengine {
 
@@ -8,7 +11,12 @@ namespace Creativengine {
 
 		/* Initialize the library */
 		if (!glfwInit())
-			return -1;
+			LOGGER_CRITICALERROR("Error initializing GLFW!");
+
+		//if (glewInit() != GLEW_OK)
+			//LOGGER_CRITICALERROR("Error initializing GLEW!");
+
+		LOGGER_WARNING("Creativengine loaded successfully!");
 
 		/* Create a windowed mode window and its OpenGL context */
 		window = glfwCreateWindow(1080, 600, "Creativengine", NULL, NULL);
