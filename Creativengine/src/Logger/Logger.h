@@ -4,19 +4,23 @@
 #include <ctime>
 #include <Windows.h>
 
-enum MessageType
-{
-	info,
-	warning,
-	error,
-	criticalError
-};
+namespace Creativengine {
 
-class Logger
-{
-public:
-	Logger();
-	~Logger();
+	enum MessageType
+	{
+		info,
+		warning,
+		error,
+		criticalError
+	};
 
-	static void PrintLine(const char* message, MessageType type);
-};
+	class Logger
+	{
+	public:
+		Logger();
+		~Logger();
+
+		static void PrintLine(const char* message, MessageType type);
+	};
+
+}
