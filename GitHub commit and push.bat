@@ -4,7 +4,7 @@ git add *
 
 cls
 
-set /P summary=Enter commit summary:
+set /P summary=Enter commit summary: 
 
 git commit -m "%summary%"
 
