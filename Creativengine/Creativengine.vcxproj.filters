@@ -29,5 +29,8 @@
     <ClInclude Include="src\Logger\LoggerMacros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\LibraryIncludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

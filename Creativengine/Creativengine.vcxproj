@@ -95,6 +95,7 @@
     <ClCompile Include="src\Logger\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\LibraryIncludes.h" />
     <ClInclude Include="src\Logger\Logger.h" />
     <ClInclude Include="src\Logger\LoggerMacros.h" />
   </ItemGroup>
