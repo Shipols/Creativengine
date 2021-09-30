@@ -77,8 +77,10 @@ namespace Creativengine {
 		return program;
 	}
 
-	__declspec(dllexport) int Run(void)
+	__declspec(dllexport) int Run(const char* version)
 	{
+		LOGGER_INFO(version);
+		
 		GLFWwindow* window;
 
 		/* Initialize the library */
@@ -97,9 +99,8 @@ namespace Creativengine {
 
 		}
 		else {
-			LOGGER_INFO("Creativengine loaded successfully!");
+			LOGGER_WARNING("Creativengine loaded successfully!");
 		}
-		
 		
 		
 		if (!window)
@@ -108,21 +109,30 @@ namespace Creativengine {
 			return -1;
 		}
 
-		float positions[6] = {
+		float positions[] = {
 			-0.5f, -0.5f,
-			 0.0f,  0.5f,
-			 0.5f, -0.5f
+			 0.5f, -0.5f,
+			 0.5f,  0.5f,
+			-0.5f,  0.5f
+		};
+
+		unsigned int indices[] = {
+			0, 1, 2,
+			2, 3, 0
 		};
 
 		unsigned int buffer;
 		glGenBuffers(1, &buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, buffer);
-		glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), positions, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		unsigned int ibo;
+		glGenBuffers(1, &ibo);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * 2 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
 		ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
 		unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
@@ -134,7 +144,7 @@ namespace Creativengine {
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			glDrawArrays(GL_TRIANGLES, 0, 3);
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
 			glClearColor(0.0f, 0.3f, 0.4f, 1.0f);
 
