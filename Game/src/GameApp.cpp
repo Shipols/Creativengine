@@ -1,12 +1,12 @@
 namespace Creativengine {
 
-	__declspec(dllimport) int Run(const char* version);
+	__declspec(dllimport) int Run();
 
 }
 
 int main()
 {
-	Creativengine::Run("Version: 1.0");
+	Creativengine::Run();
 
 	return 0;
 }

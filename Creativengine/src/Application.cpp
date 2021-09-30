@@ -77,9 +77,8 @@ namespace Creativengine {
 		return program;
 	}
 
-	__declspec(dllexport) int Run(const char* version)
+	__declspec(dllexport) int Run()
 	{
-		LOGGER_INFO(version);
 		
 		GLFWwindow* window;
 
@@ -137,6 +136,8 @@ namespace Creativengine {
 		ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
 		unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
 		glUseProgram(shader);
+
+		LOGGER_INFO();
 
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
