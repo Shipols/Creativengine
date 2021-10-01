@@ -14,6 +14,7 @@ namespace Creativengine {
 		void Render();
 	
 	private:
+		ImVec4 m_skyColor;
 	};
 
 }
