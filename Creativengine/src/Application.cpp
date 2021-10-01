@@ -193,9 +193,20 @@ namespace Creativengine {
 		
 		SetImGuiStyle();
 
+		ImVec4 skyColor = ImVec4(0.0f, 0.2f, 0.4f, 1.0f);
+		
+		#pragma region ImGui Windows
+
+		PropertiesWindow propertiesWindow;
+		ObjectsWindow objectsWindow;
+		WorldSettingsWindow worldSettingsWindow(skyColor);
+
+		#pragma endregion
+		
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
 		{
+
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT);
 
@@ -207,18 +218,21 @@ namespace Creativengine {
 
 			GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
-			GLCall(glClearColor(0.0f, 0.2f, 0.4f, 1.0f));
+			//GLCall(glClearColor(skyColor.x, skyColor.y, skyColor.z, skyColor.w));
 
 			ImGui_ImplOpenGL3_NewFrame();
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();
 
-			ShowImGuiDockSpace();
+			ShowImGuiDockSpace(window);
 
-			// Rendering ImGui windows
+			#pragma region ImGui Windows Rendering
 			
-			PropertiesWindow propertiesWindow;
-			ObjectsWindow objectsWindow;
+			objectsWindow.Render();
+			propertiesWindow.Render();
+			worldSettingsWindow.Render();
+
+			#pragma endregion
 
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

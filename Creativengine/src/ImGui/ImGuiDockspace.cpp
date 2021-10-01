@@ -4,7 +4,7 @@
 
 namespace Creativengine {
 
-	void ShowImGuiDockSpace()
+	void ShowImGuiDockSpace(GLFWwindow* window)
 	{
 		static bool opt_fullscreen = true;
 		static bool opt_padding = false;
@@ -60,15 +60,13 @@ namespace Creativengine {
 				if (ImGui::MenuItem("Open"))
 				{
 
-					// Open code here.
 				}
 
 				ImGui::Separator();
 
 				if (ImGui::MenuItem("Quit"))
 				{
-
-					// Quit code here.
+					glfwDestroyWindow(window);
 				}
 
 				ImGui::EndMenu();

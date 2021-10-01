@@ -1,7 +1,9 @@
 #pragma once
 
+#include <GLFW/glfw3.h>
+
 namespace Creativengine {
 
-	void ShowImGuiDockSpace();
+	void ShowImGuiDockSpace(GLFWwindow* window);
 
 }

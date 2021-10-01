@@ -1,13 +1,21 @@
 #include "PropertiesWindow.h"
 
-PropertiesWindow::PropertiesWindow()
-{
-	ImGui::Begin("Properties");
+namespace Creativengine {
 
-	ImGui::End();
-}
+	PropertiesWindow::PropertiesWindow()
+	{
+	}
 
-PropertiesWindow::~PropertiesWindow()
-{
+	PropertiesWindow::~PropertiesWindow()
+	{
+
+	}
+
+	void PropertiesWindow::Render()
+	{
+		ImGui::Begin("Properties");
+
+		ImGui::End();
+	}
 
 }

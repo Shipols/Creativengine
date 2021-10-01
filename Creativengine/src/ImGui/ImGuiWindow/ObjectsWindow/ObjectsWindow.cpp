@@ -1,19 +1,27 @@
 #include "ObjectsWindow.h"
 
-ObjectsWindow::ObjectsWindow()
-{
-	ImGui::Begin("Objects");
+namespace Creativengine {
 
-	if (ImGui::TreeNodeEx("Scene")) {
+	ObjectsWindow::ObjectsWindow()
+	{
+	}
 
-		ImGui::TreePop();
+	ObjectsWindow::~ObjectsWindow()
+	{
 
 	}
 
-	ImGui::End();
-}
+	void ObjectsWindow::Render()
+	{
+		ImGui::Begin("Objects");
 
-ObjectsWindow::~ObjectsWindow()
-{
+		if (ImGui::TreeNodeEx("Scene")) {
+
+			ImGui::TreePop();
+
+		}
+
+		ImGui::End();
+	}
 
 }

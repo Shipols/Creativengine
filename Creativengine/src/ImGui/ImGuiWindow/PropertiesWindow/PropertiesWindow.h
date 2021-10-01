@@ -2,10 +2,16 @@
 
 #include "ImGui\docking\imgui.h"
 
-class PropertiesWindow
-{
-public:
+namespace Creativengine {
 
-	PropertiesWindow();
-	~PropertiesWindow();
-};
+	class PropertiesWindow
+	{
+	public:
+
+		PropertiesWindow();
+		~PropertiesWindow();
+
+		void Render();
+	};
+
+}

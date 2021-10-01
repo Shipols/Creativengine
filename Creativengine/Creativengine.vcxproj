@@ -96,6 +96,7 @@
     <ClCompile Include="src\ImGui\ImGuiStyle.cpp" />
     <ClCompile Include="src\ImGui\ImGuiWindow\ObjectsWindow\ObjectsWindow.cpp" />
     <ClCompile Include="src\ImGui\ImGuiWindow\PropertiesWindow\PropertiesWindow.cpp" />
+    <ClCompile Include="src\ImGui\ImGuiWindow\WorldSettingsWindow\WorldSettingsWindow.cpp" />
     <ClCompile Include="src\Logger\Logger.cpp" />
     <ClCompile Include="vendor\ImGui\Imgui\docking\imgui.cpp" />
     <ClCompile Include="vendor\ImGui\Imgui\docking\imgui_demo.cpp" />
@@ -125,6 +126,7 @@
     <ClInclude Include="src\ImGui\ImGuiWindows.h" />
     <ClInclude Include="src\ImGui\ImGuiWindow\ObjectsWindow\ObjectsWindow.h" />
     <ClInclude Include="src\ImGui\ImGuiWindow\PropertiesWindow\PropertiesWindow.h" />
+    <ClInclude Include="src\ImGui\ImGuiWindow\WorldSettingsWindow\WorldSettingsWindow.h" />
     <ClInclude Include="src\LibraryIncludes.h" />
     <ClInclude Include="src\Logger\Logger.h" />
     <ClInclude Include="src\Logger\LoggerMacros.h" />

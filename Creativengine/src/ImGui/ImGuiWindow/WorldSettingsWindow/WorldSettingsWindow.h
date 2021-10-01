@@ -4,14 +4,16 @@
 
 namespace Creativengine {
 
-	class ObjectsWindow
+	class WorldSettingsWindow
 	{
 	public:
 
-		ObjectsWindow();
-		~ObjectsWindow();
+		WorldSettingsWindow(ImVec4 skyColor);
+		~WorldSettingsWindow();
 
 		void Render();
+	
+	private:
 	};
 
 }
