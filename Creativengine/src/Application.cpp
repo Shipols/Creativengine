@@ -2,10 +2,6 @@
 
 #include "LibraryIncludes.h"
 
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_opengl3.h"
-#include "ImGui/imgui_impl_glfw.h"
-
 #define ASSERT(x) if (!(x)) __debugbreak();
 #define GLCall(x) GLClearError();\
 	x;\
@@ -116,6 +112,10 @@ namespace Creativengine {
 		
 		}
 		
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+
 		/* Create a windowed mode window and its OpenGL context */
 		window = glfwCreateWindow(1080, 600, "Creativengine", NULL, NULL);
 		
@@ -148,6 +148,10 @@ namespace Creativengine {
 			2, 3, 0
 		};
 
+		unsigned int vao;
+		GLCall(glGenVertexArrays(1, &vao));
+		GLCall(glBindVertexArray(vao));
+
 		unsigned int buffer;
 		GLCall(glGenBuffers(1, &buffer));
 		GLCall(glBindBuffer(GL_ARRAY_BUFFER, buffer));
@@ -163,18 +167,14 @@ namespace Creativengine {
 
 		ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
 		unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
-		glUseProgram(shader);
+		GLCall(glUseProgram(shader));
 
 		const char* openGLversion = "OpenGL Version: 4.1 (Compatibility Profile) Mesa 20.2.0-devel (git-bced9b46e7)";
 
 		LOGGER_INFO(openGLversion);
 
-		//ImGui::CreateContext();
-		//ImGui_ImplOpenGL3_Init("#version 130");
-		//ImGui::StyleColorsDark();
-
 		GLCall(int location = glGetUniformLocation(shader, "u_Color"));
-		GLCall(glUniform4f(location, 1.0f, 1.0f, 0.5f, 1.0f));
+
 
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
@@ -182,15 +182,15 @@ namespace Creativengine {
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			//ImGui::NewFrame();
-			//ImGui_ImplOpenGL3_NewFrame();
+			GLCall(glUseProgram(shader));
+			
+			GLCall(glUniform4f(location, 1.0f, 1.0f, 0.5f, 1.0f));
+
+			GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo));
 
 			GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
-			GLCall(glClearColor(0.0f, 0.3f, 0.4f, 1.0f));
-
-			//ImGui::Render();
-			//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			GLCall(glClearColor(0.0f, 0.2f, 0.4f, 1.0f));
 
 			/* Swap front and back buffers */
 			GLCall(glfwSwapBuffers(window));

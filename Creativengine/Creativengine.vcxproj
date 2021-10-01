@@ -93,25 +93,11 @@
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Logger\Logger.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_demo.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_draw.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="vendor\ImGui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\LibraryIncludes.h" />
     <ClInclude Include="src\Logger\Logger.h" />
     <ClInclude Include="src\Logger\LoggerMacros.h" />
-    <ClInclude Include="vendor\ImGui\imconfig.h" />
-    <ClInclude Include="vendor\ImGui\imgui.h" />
-    <ClInclude Include="vendor\ImGui\imgui_impl_glfw.h" />
-    <ClInclude Include="vendor\ImGui\imgui_impl_opengl3.h" />
-    <ClInclude Include="vendor\ImGui\imgui_internal.h" />
-    <ClInclude Include="vendor\ImGui\imstb_rectpack.h" />
-    <ClInclude Include="vendor\ImGui\imstb_textedit.h" />
-    <ClInclude Include="vendor\ImGui\imstb_truetype.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
