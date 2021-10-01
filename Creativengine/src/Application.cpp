@@ -2,6 +2,10 @@
 
 #include "LibraryIncludes.h"
 
+#include "Imgui/docking/imgui.h"
+#include "Imgui/docking/imgui_impl_glfw.h"
+#include "Imgui/docking/imgui_impl_opengl3.h"
+
 #define ASSERT(x) if (!(x)) __debugbreak();
 #define GLCall(x) GLClearError();\
 	x;\
@@ -175,6 +179,12 @@ namespace Creativengine {
 
 		GLCall(int location = glGetUniformLocation(shader, "u_Color"));
 
+		IMGUI_CHECKVERSION();
+		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO();
+		ImGui_ImplGlfw_InitForOpenGL(window, true);
+		ImGui_ImplOpenGL3_Init("#version 130");
+		ImGui::StyleColorsDark();
 
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
@@ -191,6 +201,18 @@ namespace Creativengine {
 			GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
 			GLCall(glClearColor(0.0f, 0.2f, 0.4f, 1.0f));
+
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
+
+			ImGui::ShowDemoWindow();
+
+			ImGui::Begin("Test");
+			ImGui::End();
+
+			ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 			/* Swap front and back buffers */
 			GLCall(glfwSwapBuffers(window));
