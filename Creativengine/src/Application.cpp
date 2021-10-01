@@ -8,6 +8,10 @@
 
 #include "ImGui/ImGuiDockspace.h"
 
+#include "ImGui/ImGuiWindows.h"
+
+#include "ImGui/ImGuiStyle.h"
+
 #define ASSERT(x) if (!(x)) __debugbreak();
 #define GLCall(x) GLClearError();\
 	x;\
@@ -134,7 +138,6 @@ namespace Creativengine {
 			LOGGER_WARNING("Creativengine loaded successfully!");
 		}
 		
-		
 		if (!window)
 		{
 			glfwTerminate();
@@ -187,6 +190,8 @@ namespace Creativengine {
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 130");
 		ImGui::StyleColorsDark();
+		
+		SetImGuiStyle();
 
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
@@ -210,12 +215,10 @@ namespace Creativengine {
 
 			ShowImGuiDockSpace();
 
-			ImGui::Begin("Properties");
+			// Rendering ImGui windows
 			
-			
-
-			ImGui::End();
-
+			PropertiesWindow propertiesWindow;
+			ObjectsWindow objectsWindow;
 
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

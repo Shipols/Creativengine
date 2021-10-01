@@ -21,5 +21,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Basic.shader" />
+    <None Include="imgui.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\fonts\OpenSans.ttf" />
   </ItemGroup>
 </Project>

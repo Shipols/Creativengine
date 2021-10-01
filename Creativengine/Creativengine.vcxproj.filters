@@ -87,6 +87,15 @@
     <ClCompile Include="src\ImGui\ImGuiDockspace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ImGui\ImGuiStyle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\ImGuiWindow\PropertiesWindow\PropertiesWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\ImGuiWindow\ObjectsWindow\ObjectsWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Logger\Logger.h">
@@ -179,10 +188,19 @@
     <ClInclude Include="vendor\ImGui_Docking\docking\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ImGui\ImGuiWindow.h">
+    <ClInclude Include="src\ImGui\ImGuiDockspace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ImGui\ImGuiDockspace.h">
+    <ClInclude Include="src\ImGui\ImGuiWindows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\ImGuiStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\ImGuiWindow\PropertiesWindow\PropertiesWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\ImGuiWindow\ObjectsWindow\ObjectsWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
