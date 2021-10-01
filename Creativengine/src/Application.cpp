@@ -2,7 +2,35 @@
 
 #include "LibraryIncludes.h"
 
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_impl_opengl3.h"
+#include "ImGui/imgui_impl_glfw.h"
+
+#define ASSERT(x) if (!(x)) __debugbreak();
+#define GLCall(x) GLClearError();\
+	x;\
+	ASSERT(GLLogCall())
+
 namespace Creativengine {
+
+
+	static void GLClearError()
+	{
+		while (glGetError() != GL_NO_ERROR);
+	}
+
+	static bool GLLogCall()
+	{
+		while (GLenum error = glGetError())
+		{
+			//const char* formattedError = "[OpenGL Error]" + error;
+
+			LOGGER_ERROR("An OpenGL error occured!");
+
+			return false;
+		}
+		return true;
+	}
 
 	struct ShaderProgramSource
 	{
@@ -65,7 +93,7 @@ namespace Creativengine {
 
 	static int CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
 	{
-		unsigned int program = glCreateProgram();
+		GLCall(unsigned int program = glCreateProgram());
 		unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
 		unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
@@ -121,12 +149,12 @@ namespace Creativengine {
 		};
 
 		unsigned int buffer;
-		glGenBuffers(1, &buffer);
-		glBindBuffer(GL_ARRAY_BUFFER, buffer);
-		glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), positions, GL_STATIC_DRAW);
+		GLCall(glGenBuffers(1, &buffer));
+		GLCall(glBindBuffer(GL_ARRAY_BUFFER, buffer));
+		GLCall(glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), positions, GL_STATIC_DRAW));
 
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+		GLCall(glEnableVertexAttribArray(0));
+		GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
 
 		unsigned int ibo;
 		glGenBuffers(1, &ibo);
@@ -137,7 +165,16 @@ namespace Creativengine {
 		unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
 		glUseProgram(shader);
 
-		LOGGER_INFO();
+		const char* openGLversion = "OpenGL Version: 4.1 (Compatibility Profile) Mesa 20.2.0-devel (git-bced9b46e7)";
+
+		LOGGER_INFO(openGLversion);
+
+		//ImGui::CreateContext();
+		//ImGui_ImplOpenGL3_Init("#version 130");
+		//ImGui::StyleColorsDark();
+
+		GLCall(int location = glGetUniformLocation(shader, "u_Color"));
+		GLCall(glUniform4f(location, 1.0f, 1.0f, 0.5f, 1.0f));
 
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
@@ -145,15 +182,21 @@ namespace Creativengine {
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+			//ImGui::NewFrame();
+			//ImGui_ImplOpenGL3_NewFrame();
 
-			glClearColor(0.0f, 0.3f, 0.4f, 1.0f);
+			GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+
+			GLCall(glClearColor(0.0f, 0.3f, 0.4f, 1.0f));
+
+			//ImGui::Render();
+			//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 			/* Swap front and back buffers */
-			glfwSwapBuffers(window);
+			GLCall(glfwSwapBuffers(window));
 
 			/* Poll for and process events */
-			glfwPollEvents();
+			GLCall(glfwPollEvents());
 
 			glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int width, int height) {
 
