@@ -92,6 +92,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\ImGui\ImGuiDockspace.cpp" />
     <ClCompile Include="src\Logger\Logger.cpp" />
     <ClCompile Include="vendor\ImGui\Imgui\docking\imgui.cpp" />
     <ClCompile Include="vendor\ImGui\Imgui\docking\imgui_demo.cpp" />
@@ -116,6 +117,8 @@
     <ClCompile Include="vendor\ImGui_Docking\docking\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ImGui\ImGuiDockspace.h" />
+    <ClInclude Include="src\ImGui\ImGuiWindow.h" />
     <ClInclude Include="src\LibraryIncludes.h" />
     <ClInclude Include="src\Logger\Logger.h" />
     <ClInclude Include="src\Logger\LoggerMacros.h" />

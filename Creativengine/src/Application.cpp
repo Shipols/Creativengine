@@ -6,13 +6,14 @@
 #include "Imgui/docking/imgui_impl_glfw.h"
 #include "Imgui/docking/imgui_impl_opengl3.h"
 
+#include "ImGui/ImGuiDockspace.h"
+
 #define ASSERT(x) if (!(x)) __debugbreak();
 #define GLCall(x) GLClearError();\
 	x;\
 	ASSERT(GLLogCall())
 
 namespace Creativengine {
-
 
 	static void GLClearError()
 	{
@@ -182,6 +183,7 @@ namespace Creativengine {
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
+		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 130");
 		ImGui::StyleColorsDark();
@@ -206,10 +208,14 @@ namespace Creativengine {
 			ImGui_ImplGlfw_NewFrame();
 			ImGui::NewFrame();
 
-			ImGui::ShowDemoWindow();
+			ShowImGuiDockSpace();
 
-			ImGui::Begin("Test");
+			ImGui::Begin("Properties");
+			
+			
+
 			ImGui::End();
+
 
 			ImGui::Render();
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -232,5 +238,6 @@ namespace Creativengine {
 		glfwTerminate();
 		return 0;
 	}
+
 
 }
