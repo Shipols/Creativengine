@@ -122,7 +122,6 @@
     <ClCompile Include="vendor\ImGui_Docking\docking\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\ImGui\ImGuiWindow\AssetViewerWindow\AssetViewerWindow.h" />
     <ClInclude Include="src\ImGui\ImGuiDockspace.h" />
     <ClInclude Include="src\ImGui\ImGuiStyle.h" />

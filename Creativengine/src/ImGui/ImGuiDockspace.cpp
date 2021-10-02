@@ -72,6 +72,21 @@ namespace Creativengine {
 				ImGui::EndMenu();
 			}
 
+			if (ImGui::BeginMenu("Object"))
+			{
+				if (ImGui::BeginMenu("Add Object")) { ImGui::EndMenu(); }
+
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("Game"))
+			{
+				if (ImGui::MenuItem("Play")) {}
+				if (ImGui::MenuItem("Pause"), (bool*)false, (bool*) false) {}
+
+				ImGui::EndMenu();
+			}
+
 			ImGui::EndMenuBar();
 		}
 
