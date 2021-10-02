@@ -99,12 +99,6 @@
     <ClCompile Include="src\ImGui\ImGuiWindow\WorldSettingsWindow\WorldSettingsWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\OpenGL\OpenGLFrameBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OPENGLFRAMEBUFFER.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ImGui\ImGuiWindow\AssetViewerWindow\AssetViewerWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -218,10 +212,10 @@
     <ClInclude Include="src\ImGui\ImGuiWindow\WorldSettingsWindow\WorldSettingsWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\OpenGL\OpenGLFrameBuffer.h">
+    <ClInclude Include="src\ImGui\ImGuiWindow\AssetViewerWindow\AssetViewerWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ImGui\ImGuiWindow\AssetViewerWindow\AssetViewerWindow.h">
+    <ClInclude Include="src\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
