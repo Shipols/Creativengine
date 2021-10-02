@@ -10,16 +10,16 @@ Early screenshot of Creativengine:
 
 ## Table of color codes
 
-|Color ID|Color|----|Color ID|Color |
+|Color ID|Color|Emoji|Color ID|Color |
 |-----------|----|-----------|-|--- |
-|1|Blue  |---- |9 |Light Blue       |
-|2|Green |---- |0 |Black            |
-|3|Aqua  |---- |A |Light Green      |
-|4|Red   |---- |B |Light Aqua       |
-|5|Purple|---- |C |Light Red        |
-|6|Yellow|---- |D |Light Purple     |
-|7|White |---- |E |Light Yellow     |
-|8|Gray  |---- |F |Bright White     |
+|1|Blue  | :blue_square:::small_blue_diamond:   |9 |Light Blue                              |
+|2|Green | :green_square:::black_large_square:  |0 |Black                                   |
+|3|Aqua  | :large_blue_diamond:::green_circle:  |A |Light Green                             |
+|4|Red   | :red_square:::large_blue_circle:     |B |Light Aqua                              |
+|5|Purple| :purple_square:::red_circle:         |C |Light Red                               |
+|6|Yellow| :yellow_square:::purple_circle:      |D |Light Purple                            |
+|7|White | :white_large_square:::yellow_circle: |E |Light Yellow                            |
+|8|Gray  | :radio_button:::white_circle:        |F |Bright White                            |
 
 ## Links
 
