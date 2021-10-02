@@ -99,6 +99,9 @@
     <ClCompile Include="src\ImGui\ImGuiWindow\PropertiesWindow\PropertiesWindow.cpp" />
     <ClCompile Include="src\ImGui\ImGuiWindow\WorldSettingsWindow\WorldSettingsWindow.cpp" />
     <ClCompile Include="src\Logger\Logger.cpp" />
+    <ClCompile Include="src\OpenGL\IndexBuffer.cpp" />
+    <ClCompile Include="src\OpenGL\Renderer.cpp" />
+    <ClCompile Include="src\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="vendor\ImGui\Imgui\docking\imgui.cpp" />
     <ClCompile Include="vendor\ImGui\Imgui\docking\imgui_demo.cpp" />
     <ClCompile Include="vendor\ImGui\Imgui\docking\imgui_draw.cpp" />
@@ -131,7 +134,10 @@
     <ClInclude Include="src\ImGui\ImGuiWindow\WorldSettingsWindow\WorldSettingsWindow.h" />
     <ClInclude Include="src\LibraryIncludes.h" />
     <ClInclude Include="src\Logger\Logger.h" />
-    <ClInclude Include="src\Logger\LoggerMacros.h" />
+    <ClInclude Include="src\Logger\LoggerFunctions.h" />
+    <ClInclude Include="src\OpenGL\IndexBuffer.h" />
+    <ClInclude Include="src\OpenGL\Renderer.h" />
+    <ClInclude Include="src\OpenGL\VertexBuffer.h" />
     <ClInclude Include="vendor\ImGui\Imgui\docking\imconfig.h" />
     <ClInclude Include="vendor\ImGui\Imgui\docking\imgui.h" />
     <ClInclude Include="vendor\ImGui\Imgui\docking\imgui_impl_glfw.h" />

@@ -1,4 +1,4 @@
-#include "Logger/LoggerMacros.h"
+#include "Logger/LoggerFunctions.h"
 
 #include "LibraryIncludes.h"
 
@@ -7,35 +7,15 @@
 #include "Imgui/docking/imgui_impl_opengl3.h"
 
 #include "ImGui/ImGuiDockspace.h"
-
 #include "ImGui/ImGuiWindows.h"
-
 #include "ImGui/ImGuiStyle.h"
 
-#define ASSERT(x) if (!(x)) __debugbreak();
-#define GLCall(x) GLClearError();\
-	x;\
-	ASSERT(GLLogCall())
+#include "OpenGL/Renderer.h"
+
+#include "OpenGL/VertexBuffer.h"
+#include "OpenGL/IndexBuffer.h"
 
 namespace Creativengine {
-
-	static void GLClearError()
-	{
-		while (glGetError() != GL_NO_ERROR);
-	}
-
-	static bool GLLogCall()
-	{
-		while (GLenum error = glGetError())
-		{
-			//const char* formattedError = "[OpenGL Error]" + error;
-
-			LOGGER_ERROR("An OpenGL error occured!");
-
-			return false;
-		}
-		return true;
-	}
 
 	struct ShaderProgramSource
 	{
@@ -88,7 +68,7 @@ namespace Creativengine {
 			glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
 			char* message = (char*)alloca(length * sizeof(char));
 			glGetShaderInfoLog(id, length, &length, message);
-			LOGGER_CRITICALERROR("Failed to compile shader!");
+			PrintError("Failed to compile shader!");
 			glDeleteShader(id);
 			return 0;
 		}
@@ -117,7 +97,7 @@ namespace Creativengine {
 
 		/* Initialize the library */
 		if (!glfwInit()) {
-			LOGGER_CRITICALERROR("Error initializing GLFW!");
+			PrintCriticalError("Error initializing GLFW!");
 		
 		}
 		
@@ -131,11 +111,11 @@ namespace Creativengine {
 		glfwMakeContextCurrent(window);
 		
 		if (glewInit() != GLEW_OK) {
-			LOGGER_CRITICALERROR("Error initializing GLEW!");
+			PrintCriticalError("Error initializing GLEW!");
 
 		}
 		else {
-			LOGGER_WARNING("Creativengine loaded successfully!");
+			PrintWarning("Creativengine loaded successfully!");
 		}
 		
 		if (!window)
@@ -160,18 +140,12 @@ namespace Creativengine {
 		GLCall(glGenVertexArrays(1, &vao));
 		GLCall(glBindVertexArray(vao));
 
-		unsigned int buffer;
-		GLCall(glGenBuffers(1, &buffer));
-		GLCall(glBindBuffer(GL_ARRAY_BUFFER, buffer));
-		GLCall(glBufferData(GL_ARRAY_BUFFER, 6 * 2 * sizeof(float), positions, GL_STATIC_DRAW));
+		VertexBuffer vb(positions, 4 * 2 * sizeof(float));
 
 		GLCall(glEnableVertexAttribArray(0));
 		GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
 
-		unsigned int ibo;
-		glGenBuffers(1, &ibo);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * 2 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
+		IndexBuffer ib(indices, 6);
 
 		ShaderProgramSource source = ParseShader("res/shaders/Basic.shader");
 		unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
@@ -179,7 +153,7 @@ namespace Creativengine {
 
 		const char* openGLversion = "OpenGL Version: 4.1 (Compatibility Profile) Mesa 20.2.0-devel (git-bced9b46e7)";
 
-		LOGGER_INFO(openGLversion);
+		PrintInfo(openGLversion);
 
 		GLCall(int location = glGetUniformLocation(shader, "u_Color"));
 
@@ -215,7 +189,8 @@ namespace Creativengine {
 			
 			GLCall(glUniform4f(location, 1.0f, 1.0f, 0.5f, 1.0f));
 
-			GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo));
+			GLCall(glBindVertexArray(vao));
+			ib.Bind();
 
 			GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
