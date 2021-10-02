@@ -201,6 +201,7 @@ namespace Creativengine {
 		PropertiesWindow propertiesWindow;
 		ObjectsWindow objectsWindow;
 		WorldSettingsWindow worldSettingsWindow(skyColor);
+		AssetViewerWindow assetViewerWindow;
 
 		#pragma endregion
 		
@@ -232,6 +233,7 @@ namespace Creativengine {
 			objectsWindow.Render();
 			propertiesWindow.Render();
 			worldSettingsWindow.Render();
+			assetViewerWindow.Render();
 
 			#pragma endregion
 

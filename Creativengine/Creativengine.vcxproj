@@ -92,6 +92,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="OPENGLFRAMEBUFFER.CPP" />
+    <ClCompile Include="src\ImGui\ImGuiWindow\AssetViewerWindow\AssetViewerWindow.cpp" />
     <ClCompile Include="src\OpenGL\OpenGLFrameBuffer.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\ImGui\ImGuiDockspace.cpp" />
@@ -123,6 +124,7 @@
     <ClCompile Include="vendor\ImGui_Docking\docking\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ImGui\ImGuiWindow\AssetViewerWindow\AssetViewerWindow.h" />
     <ClInclude Include="src\OpenGL\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\ImGui\ImGuiDockspace.h" />
     <ClInclude Include="src\ImGui\ImGuiStyle.h" />

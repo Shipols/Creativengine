@@ -105,6 +105,9 @@
     <ClCompile Include="OPENGLFRAMEBUFFER.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ImGui\ImGuiWindow\AssetViewerWindow\AssetViewerWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Logger\Logger.h">
@@ -216,6 +219,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\OpenGL\OpenGLFrameBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\ImGuiWindow\AssetViewerWindow\AssetViewerWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
