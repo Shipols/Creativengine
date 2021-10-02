@@ -91,6 +91,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="OPENGLFRAMEBUFFER.CPP" />
+    <ClCompile Include="src\OpenGL\OpenGLFrameBuffer.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\ImGui\ImGuiDockspace.cpp" />
     <ClCompile Include="src\ImGui\ImGuiStyle.cpp" />
@@ -121,6 +123,7 @@
     <ClCompile Include="vendor\ImGui_Docking\docking\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OpenGL\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\ImGui\ImGuiDockspace.h" />
     <ClInclude Include="src\ImGui\ImGuiStyle.h" />
     <ClInclude Include="src\ImGui\ImGuiWindows.h" />

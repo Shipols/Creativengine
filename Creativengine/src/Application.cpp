@@ -11,6 +11,7 @@
 #include "ImGui/ImGuiWindows.h"
 
 #include "ImGui/ImGuiStyle.h"
+#include "OpenGL/OpenGLFrameBuffer.h"
 
 #define ASSERT(x) if (!(x)) __debugbreak();
 #define GLCall(x) GLClearError();\
@@ -227,7 +228,7 @@ namespace Creativengine {
 			ShowImGuiDockSpace(window);
 
 			#pragma region ImGui Windows Rendering
-			
+
 			objectsWindow.Render();
 			propertiesWindow.Render();
 			worldSettingsWindow.Render();

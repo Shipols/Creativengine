@@ -11,6 +11,7 @@ void SetImGuiStyle()
 	ImGui::GetStyle().ScrollbarRounding = 0.0f;
 	ImGui::GetStyle().TabRounding = 0.0f;
 
+	colors[ImGuiCol_WindowBg] = ImVec4(0.1f, 0.1f, 0.1f, 1.0f);
 	colors[ImGuiCol_FrameBg] = ImVec4(0.45f, 0.45f, 0.45f, 0.54f);
 	colors[ImGuiCol_FrameBgHovered] = ImVec4(0.85f, 0.85f, 0.85f, 0.40f);
 	colors[ImGuiCol_FrameBgActive] = ImVec4(0.87f, 0.87f, 0.87f, 0.67f);
