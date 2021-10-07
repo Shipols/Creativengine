@@ -1,4 +1,5 @@
 #include "ObjectsWindow.h"
+#include "ObjectTreeView/ObjectTreeView.h"
 
 namespace Creativengine {
 
@@ -15,7 +16,9 @@ namespace Creativengine {
 	{
 		ImGui::Begin("Objects");
 
-		if (ImGui::TreeNodeEx("Scene")) {
+		if (ImGui::TreeNodeEx("Scene"))
+		{
+			ObjectTreeView testObject("Ground");
 
 			ImGui::TreePop();
 

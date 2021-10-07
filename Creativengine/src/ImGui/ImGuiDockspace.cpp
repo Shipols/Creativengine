@@ -1,5 +1,7 @@
 #include "ImGuiDockspace.h"
 
+#include "Logger/LoggerFunctions.h"
+
 #include "ImGui/docking/imgui.h"
 
 namespace Creativengine {
@@ -67,6 +69,7 @@ namespace Creativengine {
 				if (ImGui::MenuItem("Quit"))
 				{
 					glfwDestroyWindow(window);
+					PrintInfo("Creativengine was closed.You can now safely close this window.");
 				}
 
 				ImGui::EndMenu();
@@ -74,7 +77,15 @@ namespace Creativengine {
 
 			if (ImGui::BeginMenu("Object"))
 			{
-				if (ImGui::BeginMenu("Add Object")) { ImGui::EndMenu(); }
+				if (ImGui::BeginMenu("Add Object")) {
+
+					if (ImGui::MenuItem("Empty Object")) {}
+					ImGui::Separator();
+					if (ImGui::MenuItem("Square")) {}
+					if (ImGui::MenuItem("Empty Object with Texture")) {}
+
+					ImGui::EndMenu();
+				}
 
 				ImGui::EndMenu();
 			}
