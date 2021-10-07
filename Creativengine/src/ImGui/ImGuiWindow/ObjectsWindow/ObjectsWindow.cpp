@@ -18,8 +18,6 @@ namespace Creativengine {
 
 		if (ImGui::TreeNodeEx("Scene"))
 		{
-			ObjectTreeView testObject("Ground");
-
 			ImGui::TreePop();
 
 		}
