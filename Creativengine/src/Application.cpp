@@ -14,6 +14,8 @@
 
 #include "OpenGL/VertexBuffer.h"
 #include "OpenGL/IndexBuffer.h"
+#include "OpenGL/VertexArray.h"
+#include "OpenGL/VertexBufferLayout.h"
 
 namespace Creativengine {
 
@@ -92,24 +94,24 @@ namespace Creativengine {
 
 	__declspec(dllexport) int Run()
 	{
-		
+
 		GLFWwindow* window;
 
 		/* Initialize the library */
 		if (!glfwInit()) {
 			PrintCriticalError("Error initializing GLFW!");
-		
+
 		}
-		
+
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 
 		/* Create a windowed mode window and its OpenGL context */
 		window = glfwCreateWindow(1080, 600, "Creativengine", NULL, NULL);
-		
+
 		glfwMakeContextCurrent(window);
-		
+
 		if (glewInit() != GLEW_OK) {
 			PrintCriticalError("Error initializing GLEW!");
 
@@ -117,7 +119,7 @@ namespace Creativengine {
 		else {
 			PrintWarning("Creativengine loaded successfully!");
 		}
-		
+
 		if (!window)
 		{
 			glfwTerminate();
@@ -140,10 +142,12 @@ namespace Creativengine {
 		GLCall(glGenVertexArrays(1, &vao));
 		GLCall(glBindVertexArray(vao));
 
+		VertexArray va;
 		VertexBuffer vb(positions, 4 * 2 * sizeof(float));
 
-		GLCall(glEnableVertexAttribArray(0));
-		GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+		VertexBufferLayout layout;
+		layout.Push<float>(2);
+		va.AddBuffer(vb, layout);
 
 		IndexBuffer ib(indices, 6);
 
@@ -164,11 +168,11 @@ namespace Creativengine {
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 130");
 		ImGui::StyleColorsDark();
-		
+
 		SetImGuiStyle();
 
 		ImVec4 skyColor = ImVec4(0.0f, 0.2f, 0.4f, 1.0f);
-		
+
 		#pragma region ImGui Windows
 
 		PropertiesWindow propertiesWindow;
@@ -177,7 +181,7 @@ namespace Creativengine {
 		AssetViewerWindow assetViewerWindow;
 
 		#pragma endregion
-		
+
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
 		{
@@ -186,11 +190,12 @@ namespace Creativengine {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			GLCall(glUseProgram(shader));
-			
+
 			GLCall(glUniform4f(location, 1.0f, 1.0f, 0.5f, 1.0f));
 
 			GLCall(glBindVertexArray(vao));
 			ib.Bind();
+			va.Bind();
 
 			GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
